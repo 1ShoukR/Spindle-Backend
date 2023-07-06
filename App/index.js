@@ -5,6 +5,7 @@ import session from 'express-session'
 import cookieParser from 'cookie-parser'
 import { Store } from 'express-session'
 import authRoute from './Routes/auth/auth.js';
+import db from '../Database/models/index.js'
 
 
 const app = express()
@@ -21,6 +22,9 @@ app.use(
 		},
 	})
 );
+(async () => {
+	await db.sequelize.sync();
+})();
 app.use(cookieParser())
 
 
