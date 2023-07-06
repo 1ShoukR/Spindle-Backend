@@ -1,14 +1,26 @@
 {
-  "name": "spindle-backend",
-  "version": "1.0.0",
-  "description": "The backend for the Spindle Application",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Rahmin Shoukoohi",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+	"name": "spindle-backend",
+	"version": "1.0.0",
+	"description": "The backend for the Spindle Application",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Rahmin Shoukoohi",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.18.2",
+		"bcrypt": "^5.0.1",
+		"connect-session-sequelize": "^7.1.4",
+		"cookie-parser": "^1.4.6",
+		"cors": "^2.8.5",
+		"deep-email-validator": "^0.1.21",
+		"dotenv": "^16.0.1",
+		"email-validator": "^2.0.4",
+		"express-es6-template-engine": "^2.2.3",
+		"express-session": "^1.17.3",
+		"pg": "^8.7.3",
+		"sequelize": "^6.21.3",
+		"sequelize-cli": "^6.4.1"
+	}
 }
