@@ -6,7 +6,7 @@ const app = express()
 app.use(cors())
 
 app.get('/', (req, res) =>{
-    res.send('Hello World')
+    res.send('Welcome to the world Spindle Backend')
 })
 
 app.listen(process.env.PORT, () =>{
