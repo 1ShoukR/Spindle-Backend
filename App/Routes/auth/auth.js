@@ -13,8 +13,8 @@ const router = express.Router();
 router.post('/create-account', async (req, res) => {
 	const { username, password } = req.body;
 	await User.create({
-		username: req.body.username,
-		password: req.body.password,
+		username: username,
+		password: password,
 	});
 	res.send('gg');
 });
