@@ -21,12 +21,16 @@ router.post('/create-account', async (req, res) => {
     if (alreadyAUser) {
         res.status(400).json({status: 400, error: 'There is already a user with these credentials'})
     } else {
-        await User.create({
+        const createNewUser = await User.create({
             username: username,
             password: password,
         });
         const token = generateAccessToken({ username: username });
-        res.status(200).json(token);
+        const response = {
+					token: token,
+					user: createNewUser,
+				};
+        res.status(200).json(response);
     }
 });
 
