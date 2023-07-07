@@ -3,6 +3,7 @@
 
 import express from 'express';
 import db from '../../../Database/models/index.js';
+import { generateAccessToken } from '../../../Utilities/index.js';
 import bcrypt from 'bcrypt';
 console.log(db.models.User);
 
@@ -12,11 +13,12 @@ const router = express.Router();
 
 router.post('/create-account', async (req, res) => {
 	const { username, password } = req.body;
-	await User.create({
-		username: username,
-		password: password,
-	});
-	res.send('gg');
+	// await User.create({
+	// 	username: username,
+	// 	password: password,
+	// });
+    const token = generateAccessToken({ username: username });
+	res.status(200).json(token);
 });
 
 export default router;
