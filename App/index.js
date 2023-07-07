@@ -7,8 +7,16 @@ import { Store } from 'express-session'
 import authRoute from './Routes/auth/auth.js';
 import db from '../Database/models/index.js'
 
-
 const app = express()
+
+// Generates new secret for JWT tokens. Save this as SECRET_KEY
+// in the .env file, and access it that way.
+
+// import crypto from 'crypto'
+// console.log(crypto.randomBytes(64).toString('hex'));
+
+
+// Middleware
 app.use(cors())
 app.use(express.json())
 app.use(
@@ -28,6 +36,7 @@ app.use(
 app.use(cookieParser())
 
 
+// Route setting
 app.use('/api/auth', authRoute);
 
 
