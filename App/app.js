@@ -20,8 +20,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(
+
 	session({
-		secret: process.env.SECRET_KEY,
+		secret: "secret",
 		resave: true,
 		saveUninitialized: true,
 		cookie: {
@@ -35,7 +36,6 @@ app.use(
 })();
 app.use(cookieParser())
 
-
 // Route setting
 app.use('/api/auth', authRoute);
 
@@ -44,6 +44,4 @@ app.get('/', (req, res) =>{
     res.send('Welcome to the world Spindle Backend')
 })
 
-app.listen(process.env.PORT, () =>{
-    console.log(`Listening on port ${process.env.PORT}`);
-})
+export default app
