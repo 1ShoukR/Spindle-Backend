@@ -21,9 +21,13 @@ router.post('/create-account', async (req, res) => {
 	if (alreadyAUser) {
 		res.status(400).json({ status: 400, error: 'There is already a user with these credentials' });
 	} else {
+        const salt = await bcrypt.genSalt(5); 
+        const hashedPassword = await bcrypt.hash(password, salt);
 		const createNewUser = await User.create({
 			username: username,
-			password: password,
+			password: hashedPassword,
+			createdAt: new Date(),
+			updatedAt: new Date(),
 		});
 		const token = generateAccessToken({ username: username });
 		const response = {
@@ -38,6 +42,21 @@ router.post('/create-account', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	const { email, password } = req.body;
+    const user = await User.findOne({
+        where: {
+            email: email
+        }
+    })
+    if (!user) {
+        return res.status(401).json({status: 401, message:'user was not found'})
+    }
+    const userWeFound = getUser.dataValues;
+    const validatePassword = await bcrypt.compare(password, userWeFound.password);
+    if (!validatePassword) {
+        res.status(400).json({status: 400, message: 'Incorrect password.'})
+    }
+    req.session.user = userWeFound;
+    res.status(200).json({status: 200, data: userWeFound})
 });
 
 export default router;
