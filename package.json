@@ -4,11 +4,13 @@
 	"description": "The backend for the Spindle Application",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest"
+		"test": "jest --detectOpenHandles"
 	},
 	"author": "Rahmin Shoukoohi",
 	"license": "ISC",
 	"dependencies": {
+		"@babel/preset-env": "^7.22.7",
+		"babel-jest": "^29.6.1",
 		"bcrypt": "^5.0.1",
 		"connect-session-sequelize": "^7.1.4",
 		"cookie-parser": "^1.4.6",
@@ -28,7 +30,8 @@
 		"sequelize": "^6.32.1",
 		"sequelize-cli": "^6.4.1",
 		"sqlite3": "^5.1.6",
-		"supertest": "^6.3.3"
+		"supertest": "^6.3.3",
+		"ts-jest": "^29.1.1"
 	},
 	"type": "module"
 }

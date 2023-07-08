@@ -1,5 +1,3 @@
-
-
 const dbConfig = {
 	HOST: process.env.HOST,
 	USER: process.env.USER,
@@ -7,6 +5,5 @@ const dbConfig = {
 	DATABASE: process.env.DATABASE,
 	DIALECT:process.env.DIALECT,
 };
-// hello
 
 export default dbConfig;

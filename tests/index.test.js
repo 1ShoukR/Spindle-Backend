@@ -1,3 +1,6 @@
+import app from "../App/app"
+const request = require('supertest')
+
 // Put all tests here until this file gets too large
 
 function add(x, y) {
@@ -17,6 +20,19 @@ describe("testing add", () => {
 
         // Then
         expect(res).toBe(expected_res)
-      });
+    });
 })
 
+// Sanity check to see if the route exists
+describe("GET / route", () => {
+    it("yields response 200", async () => {
+        // Given
+        let expected_res = 200
+
+        // When
+        let res = await request(app).get("/");
+
+        // Then
+        expect(res.statusCode).toBe(expected_res)
+    })
+})
