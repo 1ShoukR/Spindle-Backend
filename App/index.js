@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json())
 app.use(
 	session({
-		secret: process.env.SECRET_KEY,
+		secret: "secret",
 		resave: true,
 		saveUninitialized: true,
 		cookie: {
@@ -33,8 +33,7 @@ app.use(
 (async () => {
 	await db.sequelize.sync();
 })();
-app.use(cookieParser())
-
+// app.use(cookieParser())
 
 // Route setting
 app.use('/api/auth', authRoute);

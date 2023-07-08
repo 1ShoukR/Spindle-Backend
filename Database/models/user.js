@@ -9,5 +9,12 @@ export default (sequelize, DataTypes) => {
 			freezeTableName: true,
 		}
 	);
+
+	User.sync().then((data) => {
+		console.log("synced sucessfully", data)
+	}).catch((err) => {
+		console.log(err)
+	})
+
 	return User;
 };

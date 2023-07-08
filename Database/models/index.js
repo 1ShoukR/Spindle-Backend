@@ -4,10 +4,15 @@ import dbConfig from '../config/db-config.js'
 
 const { DATABASE, USER, PASSWORD, HOST, DIALECT } = dbConfig;
 
-const sequelize = new Sequelize(DATABASE, USER, PASSWORD, {
-	host: HOST,
-	dialect: DIALECT,
-});
+let sequelize = {}
+if (process.env.APP_ENV === "dev") {
+	sequelize = new Sequelize({dialect: 'sqlite', storage: '../Tests/test.db'})
+} else if (process.env.APP_ENV === "prod") {
+	sequelize = new Sequelize(DATABASE, USER, PASSWORD, {
+		host: HOST,
+		dialect: DIALECT,
+	});
+}
 
 const db = {};
 db.sequelize = sequelize;
