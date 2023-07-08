@@ -13,25 +13,31 @@ const router = express.Router();
 
 router.post('/create-account', async (req, res) => {
 	const { username, password } = req.body;
-    const alreadyAUser = await User.findOne({
-        where: {
-            username: username
-        }
-    })
-    if (alreadyAUser) {
-        res.status(400).json({status: 400, error: 'There is already a user with these credentials'})
-    } else {
-        const createNewUser = await User.create({
-            username: username,
-            password: password,
-        });
-        const token = generateAccessToken({ username: username });
-        const response = {
-					token: token,
-					user: createNewUser,
-				};
-        res.status(200).json(response);
-    }
+	const alreadyAUser = await User.findOne({
+		where: {
+			username: username,
+		},
+	});
+	if (alreadyAUser) {
+		res.status(400).json({ status: 400, error: 'There is already a user with these credentials' });
+	} else {
+		const createNewUser = await User.create({
+			username: username,
+			password: password,
+		});
+		const token = generateAccessToken({ username: username });
+		const response = {
+			message: 'user has been created',
+			status: 200,
+			token: token,
+			user: createNewUser,
+		};
+		res.status(200).json(response);
+	}
+});
+
+router.post('/login', async (req, res) => {
+	const { email, password } = req.body;
 });
 
 export default router;
