@@ -20,6 +20,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(
+
 	session({
 		secret: "secret",
 		resave: true,
@@ -33,7 +34,7 @@ app.use(
 (async () => {
 	await db.sequelize.sync();
 })();
-// app.use(cookieParser())
+app.use(cookieParser())
 
 // Route setting
 app.use('/api/auth', authRoute);
@@ -43,6 +44,4 @@ app.get('/', (req, res) =>{
     res.send('Welcome to the world Spindle Backend')
 })
 
-app.listen(process.env.PORT, () =>{
-    console.log(`Listening on port ${process.env.PORT}`);
-})
+export default app
